@@ -7,7 +7,6 @@ const summaryButton = document.getElementById("summaryButton");
 const describeImagesButton = document.getElementById("descImages");
 const askQuestionButton = document.getElementById("askQuestionButton");
 
-
 function updateRangeBackground(slider) {
   const min = parseFloat(slider.min);
   const max = parseFloat(slider.max);
@@ -23,8 +22,6 @@ function updateRangeBackground(slider) {
   slider.addEventListener("input", () => updateRangeBackground(slider));
 });
 
-
-
 function speakButtonLabel(label) {
   const msg = new SpeechSynthesisUtterance(label);
   msg.rate = parseFloat(voiceRate.value);
@@ -34,7 +31,6 @@ function speakButtonLabel(label) {
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(msg);
 }
-
 
 function speakOnHoverOrFocus(element, label, always = false) {
   element.addEventListener("mouseenter", () => {
@@ -50,7 +46,6 @@ function speakOnHoverOrFocus(element, label, always = false) {
   });
 }
 
-
 // Add voice labels for each control
 speakOnHoverOrFocus(testButton, "Test voice button");
 speakOnHoverOrFocus(summaryButton, "Read summary button");
@@ -60,7 +55,6 @@ speakOnHoverOrFocus(toggleVoice, "Enable screen reader checkbox", true);
 speakOnHoverOrFocus(voiceRate, "Voice rate slider");
 speakOnHoverOrFocus(voicePitch, "Voice pitch slider");
 speakOnHoverOrFocus(voiceVolume, "Voice volume slider");
-
 
 function speakSliderValue(label, value) {
   if (!toggleVoice.checked) return;
@@ -85,8 +79,6 @@ voicePitch.addEventListener("input", () => {
 voiceVolume.addEventListener("input", () => {
   speakSliderValue("Voice volume", voiceVolume.value);
 });
-
-
 
 // TODO: Move this into a helper file
 async function imageUrlToBase64(url) {
@@ -301,8 +293,7 @@ Now, based on this content, answer the user's question:
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer <OPEN_AI_KEY>", // replace with env-secured key
+      Authorization: "Bearer <OPEN_AI_KEY>",
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
